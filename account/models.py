@@ -21,4 +21,4 @@ class Profile(models.Model):
    user_type = models.CharField(max_length=10, choices=user_types, default='student')
    
    def __str__(self):
-      return f'{self.user.username} Profile'
+      return f"{self.user.username}'s Profile"

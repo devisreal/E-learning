@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-</head>
-<body>
-   <h1>Register Page</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Register - Aptech Blog{% endblock %}
+{% block main %}
+
+
+<div class="col-5 p-4 mx-auto mt-5 shadow-sm">
+   <form method="POST" enctype="multipart/form-data">
+   {% csrf_token %}
+   {{user_form|crispy}}
+   {{profile_form|crispy}}
+
+   <input type="submit" class="btn btn-sm btn-primary mt-4">
+</form>
+</div>
+
+{% endblock %}
