@@ -1,0 +1,37 @@
+*{
+   font-family: 'Poppins', sans-serif;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control, .form-select {
+  /* border: 1px solid #333; */
+  outline: none !important;
+  background-color: #F8F9FA;
+  box-shadow: none !important;  
+  font-size: 15px !important;
+  /* font-weight: 500 !important; */
+}
+
+.form-control:focus,
+.form-control:active,
+.form-select:focus,
+.form-select:active {
+  border: 2px solid rgb(1, 102, 152, 0.5) !important;
+}
+
+.form-label text-black,
+label {
+  font-family: poppins;  
+  font-size: 14px !important;
+}
+.form-control#bio{
+   height: 100px;
+}
+.form-select{
+   font-size: 13px !important;
+}

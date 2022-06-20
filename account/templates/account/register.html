@@ -1,18 +1,89 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %}Register - Aptech Blog{% endblock %}
+{% block title %}Register - E-learning{% endblock %}
 {% block main %}
 
 
-<div class="col-5 p-4 mx-auto mt-5 shadow-sm">
-   <form method="POST" enctype="multipart/form-data">
-   {% csrf_token %}
-   {{user_form|crispy}}
-   {{profile_form|crispy}}
+{% include 'partials/messages.html' %}
 
-   <input type="submit" class="btn btn-sm btn-primary mt-4">
-</form>
+{% comment %} <div class="col-5 p-4 mx-auto mt-5 shadow-sm">
+   <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{user_form|crispy}}
+      {{profile_form|crispy}}
+
+      <input type="submit" class="btn btn-sm btn-primary mt-4">
+   </form>
+</div> {% endcomment %}
+
+<div class="container mt-3 mb-5">
+   <form method="POST" class="col-8 p-2 px-4 bg-light mx-auto border rounded-3" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h5 class="p-2 text-secondary">Registration Form</h5>
+
+      <div class="username-field mb-3">
+         <div class="form-floating ">
+            <input type="text" class="form-control" id="username" name="username" placeholder="">
+            <label for="username">Username</label>
+         </div>
+      </div>
+
+      <div class="name-field mb-3">
+         <div class="row gx-3">
+            <div class="col">
+               <div class="form-floating ">
+                  <input type="text" class="form-control" id="firstname" name="firstname" placeholder="">
+                  <label for="firstname">First Name</label>
+               </div>
+            </div>
+            <div class="col">
+               <div class="form-floating ">
+                  <input type="text" class="form-control" id="lastname" name="lastname" placeholder="">
+                  <label for="lastname">Last Name</label>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="email-field mb-3">
+         <div class="form-floating ">
+            <input type="email" class="form-control" id="email" name="email" placeholder="">
+            <label for="email">Email address</label>
+         </div>
+      </div>
+
+      <div class="password-field mb-3">
+         <div class="row gx-3">
+            <div class="col">
+               <div class="form-floating ">
+                  <input type="password" class="form-control" id="password1" name="password1" placeholder="">
+                  <label for="password1">Password</label>
+               </div>
+            </div>
+            <div class="col">
+               <div class="form-floating ">
+                  <input type="password" class="form-control" id="password2" name="password2" placeholder="">
+                  <label for="password2">Confirm Password</label>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      {% comment %} <div class="user-type col-4">
+         <div class="form-floating ">
+            <select class="form-select" name="user_type" id=" userType" aria-label="Floating label select example">
+               <option value="1">Student</option>               
+               <option value="3">Parent</option>
+            </select>
+            <label for="userType">User Type</label>
+         </div>
+      </div> {% endcomment %}
+
+      <div class="ms-auto mt-4" style="width: fit-content;">
+         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+      </div>
+   </form>
 </div>
 
 {% endblock %}

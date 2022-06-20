@@ -4,22 +4,20 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 
-class UserForm(UserCreationForm):
+class UserForm(forms.ModelForm):
    email = forms.EmailField()
    class Meta:
       model = User
-      fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+      fields = ('username', 'first_name', 'last_name', 'email')
       labels = {
          'username': 'Username',
          'email': 'Email',
-         'password1': 'Password',
-         'password2': 'Confirm Password',
       }
    
    def __init__(self, *args: Any, **kwargs: Any) -> None:
       super(UserForm , self).__init__(*args, **kwargs)
 
-      for fieldname in ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',):
+      for fieldname in ('username', 'first_name', 'last_name', 'email'):
          self.fields[fieldname].help_text = None
 
 class ProfileForm(forms.ModelForm):
