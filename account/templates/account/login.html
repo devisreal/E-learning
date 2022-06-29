@@ -7,6 +7,30 @@
 
 {% include 'partials/messages.html' %}
 
-<h4>Login Page</h4>
+
+
+<div class="container mx-auto mt-5">
+   <div class="row p-4">
+      <div class="col-sm-10 col-md-6 offset-3 my-3 p-5  shadow-sm">
+         <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="username" name="username" placeholder="">
+                  <label for="username">Username</label>
+            </div>
+
+            <div class="form-floating ">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="">
+                  <label for="password">Password</label>
+               </div>
+
+            <div class="btn-box mt-4 mx-auto" style="width: fit-content !important;">
+               <button type="submit" class="btn btn-primary rounded-3 px-4 ">Login</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
 
 {% endblock %}

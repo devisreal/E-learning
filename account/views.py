@@ -2,6 +2,9 @@ from django.shortcuts import redirect, render
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from .forms import ProfileForm, UserForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 # =========================================================== REGISTER ===========================================================
@@ -44,7 +47,7 @@ def register(request):
 
 
 # =========================================================== EDIT PROFILE ===========================================================
-
+@login_required
 def edit_profile(request):
     if request.method == "POST":
         user_form = UserForm(request.POST or None, instance = request.user)
@@ -53,7 +56,7 @@ def edit_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('login')
+            return redirect('user-login')
 
     else:
         user_form = UserForm(instance=request.user)
@@ -66,6 +69,31 @@ def edit_profile(request):
 
     return render(request, 'account/edit_profile.html', context)
 
+
 # =========================================================== LOGIN ===========================================================
-def login(request):
-    return render(request, 'account/login.html')
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                messages.success(request, 'Welcome')
+                return redirect('home')
+            else:                
+                messages.warning(request, 'Account is not active')
+                return render(request, 'account/login.html')                
+        else:
+            messages.error(request, 'Please enter valid details')
+            return render(request, 'account/login.html')
+
+    else:
+        return render(request, 'account/login.html')    
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect('user-login')

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Home - School Website{% endblock %}
+{% block main %}
+
+{% include 'partials/messages.html' %}
+
+
+<h4>This is home page</h4>
+<a class="btn btn-secondary btn-sm fw-bold mx-5" href="{% url 'user-logout' %}" >Logout</a>
+{% endblock %}
